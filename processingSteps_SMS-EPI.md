@@ -11,7 +11,7 @@ Concurrent to the MRI data acquisition, cardiac and respiratory signals were rec
 ---
 The MATLAB script _regressor\_creation.m_ creates a _.mat_ file which contains various regressors which we are taking into account during physiological noise characterization for functional MRI signal. 
 
-> It is worth noting that the `repetition time` (TR) used for the scanning is separately calculated inside the script _regressor\_creation.m_ using extrenal triggers recorded during [data acquisition](#data_acquisition) step.  It is more correct to use this TR than nominal TR prescribed during scanning on the host computer. Not just for [regression creation](#regressor_creation) part, but for the entire data processing pipeline below.  
+> It is worth noting that the `repetition time` (TR) used for the scanning is separately calculated inside the script _regressor\_creation.m_ using extrenal triggers recorded during [data acquisition](#data-acquisition) step.  It is more correct to use this TR than nominal TR prescribed during scanning on the host computer. Not just for [regression creation](#regressor-creation) part, but for the entire data processing pipeline below.  
 
 The regressors created are:
 
@@ -32,9 +32,9 @@ The regressors created are:
 	* This regressors is de-meaned and de-trended. 
 > I obtained MATLAB functions to create regressors from Wietske and Joao and do not know if it is okay to share these codes publically. Hence, not posting the files on github.
 
-So we have total of 19 regressors and 1 more (baseline) gets added by the [SPM][SPM] during [model specification](\model_specification_and_estimate).
+So we have total of 19 regressors and 1 more (baseline) gets added by the [SPM][SPM] during [model specification](#model-specification-and-estimate).
 
-All these 19 regressors are bundled up in a single _regressors\_<datasetName\>.mat_ file which can be fed to SPM during [model specification](\model_specification_and_estimate) stage later. The individual _.mat_ files are stored in the _physioLogs_ folders for each volunteer.
+All these 19 regressors are bundled up in a single _regressors\_<datasetName\>.mat_ file which can be fed to SPM during [model specification](#model-specification-and-estimate) stage later. The individual _.mat_ files are stored in the _physioLogs_ folders for each volunteer.
 
 The developed regressors were selectively grouped with DM<sub>0</sub> (baseline model) in order to build six nested regression models for GLM analysis.
 
@@ -91,8 +91,8 @@ The developed regressors were selectively grouped with DM<sub>0</sub> (baseline 
 		* `Microtime resolution` is accepted as default 16.
 		* `Microtime onset` is accepted as default 8.
 	* `Data & Design`
-		* `Scans` are all the volumes which are end result of the [Spatial pre-processing](#spatial_pre-processing) steps above.
-		* `Multiple regressors` consists of a MATLAB _.mat_ file with 19 regressors, as created in the [regressor creation](#regressor_creation) step above.
+		* `Scans` are all the volumes which are end result of the [Spatial pre-processing](#spatial-pre-processing) steps above.
+		* `Multiple regressors` consists of a MATLAB _.mat_ file with 19 regressors, as created in the [regressor creation](#regressor-creation) step above.
 		* `High-pass filter` value is set to 9999999, which is cutoff value in Seconds, and hence high-pass filtering is assumed to be ineffective.
 	* `Masking threshold` is set to 0.6. The default of 0.8 masked out few ventricle regions from the brain.
 	> This step creates a model in a _SPM.mat_ file in the specified `Directory`.
